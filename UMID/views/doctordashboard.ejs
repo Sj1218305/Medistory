@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/16444fe168.js" crossorigin="anonymous"></script>
+  <link rel="shortcut icon" href="Dr._Slip-512.ico">
+  <title>login</title>
+  <style>
+   .box{
+           
+           padding: 40px;
+           text-align: center;
+           background: white;
+           color:  rgb(87, 87, 124);
+           
+       }
+       .box .ab h1{
+        text-align: left;
+        margin-left: 520px;
+       }
+       .box .ab input {
+           margin: 2px auto;
+           border: 2px solid  rgb(87, 87, 124);
+           margin-left: 20px;
+           padding: 7px 4px;
+           outline: none;
+           color: rgb(87, 87, 124);
+           font-weight: bold;
+           background: none;
+           margin-bottom: 10px;
+           text-align: center;
+          
+       }
+     .box .abd input{
+        height: 150px;
+        width: 500px;
+     }
+      .box .ab input:focus{
+          
+          box-shadow: -6px 6px 20px -5px rgb(87, 87, 124);
+      }
+.box .submit{
+   background:  rgb(87, 87, 124);
+   outline: none;
+   
+   color: white;
+   width: 120px;
+   padding: 8px;
+}
+.box .submit:hover{
+   box-shadow: -6px 6px 20px -5px rgb(87, 87, 124);
+}
+.jumbotron{
+   text-align: center;
+   background:rgba(162, 162, 216, 0.904) ;
+   color: white;
+}
+.jumbotron .display-4{
+ float: left;
+}
+.jumbotron img{
+ height: 200px;
+ width: 200px;
+ margin-top: -50px ;
+ float: left;}
+nav{
+   text-align: center;
+   font-size: 20px;
+  
+}
+.abcd{
+ margin-left: 450px;
+ margin-top: -200px;
+}
+.abc{
+ margin-left: -350px;
+}
+.dn{
+ color: rgba(162, 162, 216, 0.904);
+ margin: -35px 0 0 3px;
+ float: left;
+ font-size: 100px;
+}
+  </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark" style="background-color: rgb(87, 87, 124)">
+        <a class="navbar-brand" style="font-family: 'Cinzel', serif;" href="#">Medistory <i class="fas fa-notes-medical"></i></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link" href="#photo">for patient</a>
+              <a class="nav-item nav-link" href="#gallery">for doctor</a>
+              <a class="nav-item nav-link" href="#goo">connect</a>
+            </div>
+          </div>
+        </nav>
+  </nav>
+  <div class="jumbotron">
+      <img src="Doctor Image Mobile copy.png" class="rounded-circle" alt="Cinque Terre">
+          <h1 class="display-4"><%= doctor.hospital%></h1>
+          <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
+              This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
+              This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+          <!-- <hr class="my-4"> -->
+        </div>
+        <div class="dn">
+        <h4><%= doctor.firstName%></h4>
+      </div>
+  <!-- <form action="/patientdashboard" method="POST"> -->
+  <% if(otpSent) { %>
+  <form class="box" action="/checkOtp" method="post">
+    <input type="text" name="number" value="<%= number%>" readonly="readonly">
+    <input type="text" name="otp" required placeholder="Enter OTP">
+    <button class="btn btn-primary submit" role="button">
+      Confirm OTP
+    </button>
+  </form>
+  <% } else{ %>
+  <form class="box" action="/authNumber" method="POST">
+    <div class="ab">
+      <h1>Apollo Hospital Delhi</h1>
+      <input type="text" name="username" required placeholder="Username">
+      <input type="number" name="mobile" required placeholder="Number"> <br>
+      <button class="btn btn-primary submit" role="button">
+        Send OTP
+      </button>
+  </form>
+  <% } %>
+</body>
+
+</html>

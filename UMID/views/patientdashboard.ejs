@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/16444fe168.js" crossorigin="anonymous"></script>
+  <title>Patient</title>
+  <link rel="stylesheet" href="patient.css">
+  <link rel="shortcut icon" href="Dr._Slip-512.ico">
+
+  <style>
+  .jumbotron{
+      text-align: center;
+      background:rgba(162, 162, 216, 0.904) ;
+      color: white;
+  }
+  nav{
+      text-align: center;
+      font-size: 20px;
+      position: relative;
+
+  }
+  .box{
+              width: 85%;
+              height: 450px;
+              margin: 80px;
+              padding: 40px;
+              border: 3px solid  rgb(87, 87, 124);
+              background: white;
+              color:  rgb(87, 87, 124);
+              box-shadow: -23px 12px 28px -2px rgba(0,0,0,0.75);
+  }
+  .box .abc h6{
+      margin-bottom: 40px;
+  }
+  .abc{
+      margin-left: 100px;
+  }
+  .abcd {
+     margin-top: -280px;
+     margin-left: 700px ;
+  }
+  .abcd h6{
+    margin-bottom: 40px;
+  }
+  .box button{
+    margin-left: 450px;
+    box-shadow: -13px 8px 18px -2px rgb(87, 87, 124);
+  }
+  .buttonl{
+    margin-left:570px;
+
+  }
+  .buttonl .btn{
+    width: 300px;
+    height: 45px;
+    padding: 10px;
+    background:rgb(87, 87, 124) ;
+    border: none;
+    margin-left: 350px;
+  }
+  .history{
+    color:rgb(87, 87, 124);
+    margin: 50px;
+  }
+  .box .abd,.abe{
+
+  }
+  .box .abd input, .abe input {
+    height: 120px;
+    width: 300px;
+  }
+  .box .abe{
+    margin-left: 600px;
+    margin-top: -285px;
+  }
+  .box .sub input{
+    font-weight: bold;
+    color:white;
+    background:rgb(87, 87, 124);
+    height: 30px;
+    border: none;
+  }
+  .box .sub input:hover{
+    box-shadow: -6px 4px 9px -2px rgb(87, 87, 124);
+  }
+  .box .sub{
+    text-align: center;
+    margin-left: -50px;
+  }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark" style="background-color: rgb(87, 87, 124)">
+    <a class="navbar-brand" style="font-family: 'Cinzel', serif;" href="#">Medistory <i class="fas fa-notes-medical"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="#photo">for patient</a>
+        <a class="nav-item nav-link" href="#gallery">for doctor</a>
+        <a class="nav-item nav-link" href="#goo">connect</a>
+      </div>
+    </div>
+  </nav>
+  <form class="box" action="/viewReport" method="POST">
+    <div class="ab" style="text-align: center; margin-bottom: 50px;">
+      <h1>Welcome <%= user.firstName %></h1>
+    </div>
+    <div class="abc">
+      <h4>Name</h4>
+      <h6><%= user.firstName %> <%= user.lastName %></h6>
+      <h4>Mobile Number /h4>
+        <h6> <%= user.mobile %></h6>
+        <h4>Address</h4>
+        <h6><%= user.address %></h6>
+    </div>
+    <div class="abcd">
+      <h4>Email</h4>
+      <h6><%= user.email%></h6>
+      <h4>Father name</h4>
+      <h6><%= user.father%></h6>
+      <h4>Date of Birth</h4>
+      <h6><%=user.date %> <%=user.month %> <%=user.year %></h6>
+    </div>
+  </form>
+  <a href="/insurance" class="btn btn-primary">Add Insurance</a>
+
+  
+  
+  <div class="" id="collapseExample">
+    <div class="card card-body">
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button">
+                <h4></h4>
+                <p style="display: flex;">
+              </button>
+            </h2>
+          </div>
+          <h3 style="color: rgb(87, 87, 124); text-align: center;" >PatientDetails</h3>
+          <div class="history">
+
+          <div id="collapseOne">
+             <h4>Hospital name</h4><h6>Doctor name</h6>  <!-- ye bhi daaal bhaii -->
+            <% patientDetails.forEach(function(details){ %>
+            <div class="card-body">
+              <%= details.Diagnosis%> <br>
+              <%= details.Advise %>    <br>
+              <%= details.Other %> <br>
+              <%= details.created %>
+            </div>
+            <% }) %>
+          </div>
+          </div>
+          
+
+        </div>
+        
+      </div><hr>
+      <div class="buttonl" style="margin-top: 50px; margin-left: 50px;">
+        
+        <% if(sent){ %>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2"
+          aria-expanded="false" aria-controls="collapseExample">
+          Add Report
+        </button>
+        <%  } %>
+    
+    </div>
+      <div class="collapse" id="collapseExample2">
+        <form class="box" action="/addReport" method="POST">
+          <div class="abd">
+            <h1>Add Report</h1><br>
+            <b>Diagnosis</b><br>
+            <input type="text" name="details[Diagnosis]" required placeholder=""><br>
+            <b>Advise/Prescription</b><br>
+            <input type="text" name="details[Advise]" required placeholder=""></div>
+            <div class="abe"><b>Report Details</b></div>
+            <input type="text" name = "report" required placeholder=" "> 
+           <br>
+            <b>Other Comments</b> <br>
+            <input type="text" name="details[Other]" required placeholder=""><br></div> <br>
+            <button type="submit" style="margin: -240px 0 0 520px; width: 200px;" class="btn btn-primary btn-sm">Submit Report</button>
+    
+        </form>
+      </div>
+
+</body>
+
+</html>

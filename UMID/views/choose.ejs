@@ -1,0 +1,15 @@
+patientDetails
+    <form action="/add" method="POST">
+<div id="collapseOne">
+  <% details.forEach(function(details){ %>
+  <div class="card-body" id="details">
+   <input type="checkbox" name="<%= details %>" value=""> 
+   <label for="<%= details %>"><%= details.Diagnosis%><br><%= details.Advise %><br> 
+    <%= details.Other %><br> <%= details.created %></label>
+    </div>
+   <% }) %>
+  <button type="submit">Submit</button>
+</form>
+</div>
+</div>
+</div>

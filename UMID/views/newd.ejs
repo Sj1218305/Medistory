@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/16444fe168.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Cinzel&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="Dr._Slip-512.ico">
+<title>Doctor Register</title>
+<style>
+        .box{
+            width: 650px;
+            padding: 40px;
+            position: absolute;
+            top: 104%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+            border: 3px solid  rgb(87, 87, 124);
+            background: white;
+            color:  rgb(87, 87, 124);
+            
+        }
+        .box .ab input {
+            margin: 2px auto;
+            border: 2px solid  rgb(87, 87, 124);
+            margin-left: 20px;
+            padding: 7px 4px;
+            outline: none;
+            color: rgb(87, 87, 124);
+            font-weight: bold;
+            background: none;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+       .box .ab input:focus{
+           
+           box-shadow: -6px 6px 20px -5px rgb(87, 87, 124);
+       }
+.box .submit{
+    background:  rgb(87, 87, 124);
+    outline: none;
+    margin-top: 40px;
+    color: white;
+    width: 100px;
+    padding: 8px;
+}
+.box .submit:hover{
+    box-shadow: -6px 6px 20px -5px rgb(87, 87, 124);
+}
+.jumbotron{
+    text-align: center;
+    background:rgba(162, 162, 216, 0.904) ;
+    color: white;
+}
+nav{
+    text-align: center;
+    font-size: 20px;
+   
+}
+    </style>
+</head>
+<body>
+        <nav class="navbar navbar-dark" style="background-color: rgb(87, 87, 124)">
+                <a class="navbar-brand"  style="font-family: 'Cinzel', serif;" href="#">Medistory <i class="fas fa-notes-medical"></i></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-item nav-link" href="#photo">for patient</a>
+                      <a class="nav-item nav-link" href="#gallery">for doctor</a>
+                      <a class="nav-item nav-link" href="#goo">connect</a>
+                    </div>
+                  </div>
+                </nav>
+        <div class="jumbotron">
+                <h1 class="display-4">Doctor <i class="fas fa-user-md"></i></h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
+                    This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
+                    This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+              </div>
+            <form class="box" action='/addDoctor' method="POST">
+                <div class="ab"><h1>Register Now</h1>
+            
+            <input type="text" name="firstName" required placeholder="First name">
+            <input type="text" name="lastName" required placeholder="Last name"> 
+            <br>
+            <input type="number" name="mobile" required placeholder="Mobile number">
+            <input type="text" name="license" required placeholder="License number">
+            <br>
+            <input type="email" name="email" required placeholder="Email">
+            <input type="text" name="" required placeholder="Address"> <br>
+                
+            <input style="margin-left: 20px;" type="text" name="hospital" required placeholder="Organization">
+            
+            <input type="text" name="specialization" required placeholder="Specialization">
+            <br>
+            <input type="password" name="password" required placeholder="Password">
+            <input type="password" name="password1" required placeholder="Confirm password">
+            <br>
+            <b>Profile picture</b><br>
+            <form action="/action_page.php">
+                <input type="file" name="Profile" accept="image/*">
+              </form>
+                   <br>
+                   <b>Licence Image</b>
+            <form action="/action_page.php">
+                <input type="file" name="pic" required accept="image/*">
+              </form>
+                   <br><b>Gender </b>
+                    <input type="radio" name="gender" value="male" checked> Male
+                <input type="radio" name="gender" value="female"> Female
+                <input type="radio" name="gender" value="other"> Other 
+                
+                      
+            <br> 
+            <input class="submit" type="submit" name="" placeholder="Register"><br>
+                      
+                </div><br>
+                
+           
+        </form>
+        </body>
+    </html>
+    
