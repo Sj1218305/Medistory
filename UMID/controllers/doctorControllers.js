@@ -3,7 +3,7 @@ const express = require('express');
 const Doctor = require("../models/doctor");
 const bcrypt = require('bcryptjs');
 const User = require("../models/user");
-
+const uuidv1 = require('uuid/v1');
 
 
 exports.getRegister = (req, res, next) => {
@@ -90,7 +90,7 @@ exports.postLogin = (req, res, next) => {
                 res.redirect('/logind');
             }
             else {
-                console.log(doctor);
+                //console.log(doctor);
                 ssn["doctorDetails"] = doctor;
                 // console.log(user);
                 bcrypt.compare(password, doctor.password)
@@ -102,7 +102,9 @@ exports.postLogin = (req, res, next) => {
                                     console.log(err);
                                 }
                                 else {
-                                    req.session.doctorName = doctorDetails.firstName
+                                    req.session.doctorName = doctorDetails.firstName,
+                                    req.session.hospital = doctorDetails.hospital,
+                                    req.session.mobile = doctorDetails.mobile
                                     res.render('doctordashboard', { doctor: doctorDetails, otpSent: false });
                                 }
 
@@ -143,9 +145,10 @@ exports.authLogin = (req, res, next) => {
                     //         "Content-Type": "application/json"
                     //     },
                     //     method: "POST"
-                    // }).then(e => {
-                    //     if (e.status == 200)
-                    // }).catch(er => console.log(err))
+                    //})
+                    //.then(e => {
+                      //  if (e.status == 200){}
+                    //}).catch(er => console.log(err))
                 })
             }
         })
@@ -162,10 +165,10 @@ exports.confirmOTP = (req, res, next) => {
         const currentTime = new Date();
         const timeDiff = (currentTime - otpGenTime) / (1000 * 60);
 
-        if (savedOTP == OTP && timeDiff < 5) {
+        if (savedOTP == OTP && timeDiff < 500) {
             ssn.patientNumber = patientNumber;
             console.log(ssn)
-            res.render("patientdashboard", { user: user, sent: true, patientDetails: user.details, doctor: ssn.doctorDetails });
+            res.render("patientdashboard", { user: user, sent: true, patientDetails: user.details, doctor: {firstName: req.session.doctorName, hospital : req.session.hospital, mobile : req.session.mobile} });
         }
         else {
             res.send("OTP Not same")
@@ -185,20 +188,33 @@ exports.getPDashboard = (req, res, next) => {
 
 
 exports.addReport = (req, res) => {
-    console.log('hello');
-    console.log(ssn.patientNumber);
-    console.log(req.session);
+    //console.log('hello');
+    //console.log(ssn.patientNumber);
+    //console.log(req.session);
+    console.log(req.body)
     User.findOne({ mobile: ssn.patientNumber }, (err, res1) => {
+       // console.log(req.body)
         if (err) console.log(err);
-        console.log(res1)
-        req.body.details.created = (new Date()).toISOString()
+        //console.log(res1)
+        let newDetails={
+                id : uuidv1(),
+                doc:  req.body.doc,
+                hosp : req.body.hosp,
+                mobile : req.body.mobile,
+                diag:req.body.diagnosis,
+                report:req.body.report,
+                presc:req.body["Prescription"],
+                other:req.body["Other"],
+                created:(new Date()).toLocaleString()
+        }
+        // req.body.details.created = (new Date()).toISOString()
         let temp = res1.details;
         //console.log(temp)
-        res1.details.push(req.body.details);
+        res1.details.push(newDetails);
         //console.log(temp)
         User.findOneAndUpdate({ mobile: ssn.patientNumber }, { details: res1.details }, (err, aff, response) => {
             console.log(err, res);
-            res.render('patientdashboard', { user: res1, patientDetails: res1.details, doctor: ssn.doctorDetails, sent: true });
+            res.render('patientdashboard', { user: res1, patientDetails: res1.details, doctor: ssn.doctorDetails, doctor: {firstName: req.session.doctorName, hospital : req.session.hospital, mobile : req.session.mobile}, sent: true });
         });
     })
 }

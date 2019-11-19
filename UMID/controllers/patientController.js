@@ -1,5 +1,6 @@
  const express= require('express');
  const User   = require("../models/user");
+ 
  const bcrypt 			  = require('bcryptjs');
 
 
@@ -149,7 +150,7 @@ exports.getLogin=(req,res,next)=>{
 
 
 exports.add = (req,res)=>{
-    console.log(req.body);
+    //console.log(req.body);
     var checkedBody = req.body;
     if(checkedBody.checked == true){
        
@@ -157,4 +158,13 @@ exports.add = (req,res)=>{
     res.redirect('/')
 }
     
-    
+exports.getReport = (req,res)=>{
+    User.findOne({"details.id" : req.params.id}, (err,res1)=>{
+        if(err) console.log(err);
+        console.log(res1);
+        res1.details.forEach(function(detail){
+            
+        })
+        res.render("show",{patient : res1, id : req.params.id});
+    })
+}

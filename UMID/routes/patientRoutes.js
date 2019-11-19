@@ -14,4 +14,5 @@ router.get('/login',patientControllers.getLogin);
 router.post('/login',patientControllers.postLogin);
 router.post('/chooseDetails',patientControllers.getDetails);
 router.post('/add',patientControllers.add);
+router.get('/showReport/:id',patientControllers.getReport);
 module.exports=router;
